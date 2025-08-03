@@ -1,0 +1,13 @@
+{
+    "name": "magicoli/agnstk-octobercms-adapter", 
+    "description": "October CMS adapter for AGNSTK",
+    "type": "october-plugin",
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AGNSTK\\Adapters\\October\\": "src/"
+        }
+    }
+}

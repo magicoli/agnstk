@@ -1,0 +1,211 @@
+/* AGNSTK Framework Styles */
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1.6; 
+    color: #333;
+    background: #f8fafc;
+}
+
+.agnstk-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* Header Styles */
+.agnstk-header { 
+    background: #fff; 
+    border-bottom: 1px solid #e2e8f0; 
+    padding: 1rem 0; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.agnstk-header .agnstk-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.agnstk-brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+}
+
+.agnstk-brand h1 { 
+    margin: 0; 
+    font-size: 1.5rem; 
+}
+
+.agnstk-brand a { 
+    color: #2563eb; 
+    text-decoration: none; 
+}
+
+.agnstk-logo { 
+    height: 40px; 
+    width: auto; 
+}
+
+/* Navigation Styles */
+.agnstk-nav ul { 
+    display: flex; 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    gap: 2rem; 
+}
+
+.agnstk-nav a { 
+    color: #64748b; 
+    text-decoration: none; 
+    font-weight: 500; 
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.agnstk-nav a:hover { 
+    color: #2563eb; 
+    border-bottom-color: #2563eb;
+}
+
+/* Main Content */
+.agnstk-main { 
+    min-height: calc(100vh - 140px); 
+    padding: 2rem 0; 
+}
+
+/* Footer Styles */
+.agnstk-footer { 
+    background: #f1f5f9; 
+    border-top: 1px solid #e2e8f0; 
+    padding: 1rem 0; 
+    text-align: center; 
+    color: #64748b; 
+    font-size: 0.875rem; 
+}
+
+/* Block Styles */
+.agnstk-hello-block { 
+    background: #f0f9ff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin: 20px 0; 
+    border: 1px solid #bfdbfe;
+}
+
+.agnstk-shortcode { 
+    background: #fef3c7; 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    border: 1px solid #fbbf24;
+}
+
+.agnstk-page { 
+    background: #fff; 
+    padding: 2rem; 
+    border-radius: 8px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* General Styles */
+code { 
+    background: #f3f4f6; 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+a { 
+    color: #2563eb; 
+    text-decoration: none; 
+}
+
+a:hover { 
+    text-decoration: underline; 
+}
+
+h1, h2, h3 { 
+    color: #1e293b; 
+}
+
+/* Shortcode Demo Styles */
+.agnstk-shortcode-demo {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #e2e8f0;
+}
+
+.agnstk-shortcode-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.agnstk-shortcode-item {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.agnstk-shortcode-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.agnstk-shortcode-example {
+    background: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    margin: 0.5rem 0;
+}
+
+/* Error Styles */
+.agnstk-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.agnstk-error h1 {
+    color: #dc2626;
+    margin-top: 0;
+}
+
+.error-message {
+    background: #fee2e2;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #dc2626;
+    margin: 1rem 0;
+}
+
+.error-details {
+    margin-top: 1rem;
+}
+
+.error-details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: #dc2626;
+    margin-bottom: 0.5rem;
+}
+
+.error-details pre {
+    background: #f3f4f6;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}

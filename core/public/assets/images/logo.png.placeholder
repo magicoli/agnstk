@@ -1,0 +1,15 @@
+This is a placeholder for the default logo.
+
+Optimal logo specifications:
+- Format: SVG (scalable) or PNG with transparency
+- Size: 200x50px (4:1 ratio for horizontal logos)
+- Alternative: 100x100px (1:1 ratio for square logos)
+- File size: Under 50KB for fast loading
+- Background: Transparent
+- Colors: Consider dark/light mode compatibility
+
+For best results:
+1. Use SVG for perfect scaling at all sizes
+2. If PNG, provide 2x retina version (400x100px)
+3. Ensure logo is readable at small sizes (mobile)
+4. Test contrast against header background

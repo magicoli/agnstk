@@ -1,0 +1,10 @@
+name: 'AGNSTK Example App'
+type: module
+description: 'A simple AGNSTK example app implemented as a Drupal module.'
+package: 'AGNSTK'
+version: '0.1.0'
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:system
+  - drupal:node
+  - drupal:user

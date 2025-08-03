@@ -1,0 +1,11 @@
+{
+    "app": {
+        "name": "AGNSTK Example App",
+        "version": "1.0.0",
+        "description": "Agnostic Glue for Non-Specific ToolKits - Example Application"
+    },
+    "site": {
+        "name": "AGNSTK Demo Site",
+        "theme": "default"
+    }
+}

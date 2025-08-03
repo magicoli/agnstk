@@ -74,13 +74,47 @@ class Hello {
         return "Hello from AGNSTK!";
     }
 }
-// adapters/wordpress/agnstk-plugin.php
+// adapters/wordpress/wordpress-plugin.php
 add_shortcode('agnstk_hello', function() {
     return \AGNSTK\Core\Hello::sayHi();
 });
 ```
 
 Now use [agnstk_hello] in WordPress!
+
+## ExampleApp - AGNSTK Proof of Concept
+
+This is a CMS-agnostic application framework that allows you to write your core business logic once and deploy it across multiple platforms.
+
+### Current Status
+The proof of concept includes:
+- **Standalone app**: Access via `index.php`
+- **WordPress plugin**: Install as plugin with `exampleapp.php` as main file
+- **Drupal module**: Use `exampleapp.module` 
+- **October CMS plugin**: Use `Plugin.php`
+
+### Quick Test
+1. **Standalone**: Visit the root URL to see the standalone app
+2. **WordPress**: Activate the plugin and use shortcode `[exampleapp_membership]`
+
+### Core Features
+- `MembershipService`: Returns membership information for a given user ID
+- Platform-specific adapters handle user authentication and CMS integration
+
+### File Structure
+```
+agnstk/
+├── index.php              # Standalone entry
+├── exampleapp.php         # WordPress plugin entry
+├── exampleapp.module      # Drupal module entry  
+├── Plugin.php             # October CMS plugin entry
+├── composer.json          # Autoloader configuration
+├── core/app/Services/     # Core business logic
+└── adapters/              # Platform-specific adapters
+```
+
+### Setup
+Run `composer install` to generate the autoloader, then test each platform.
 
 ## Contributing
 

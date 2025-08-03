@@ -1,0 +1,20 @@
+This is a placeholder for the favicon.
+
+Optimal favicon specifications:
+- Format: ICO (contains multiple sizes) or PNG
+- Sizes included in ICO:
+  * 16x16px - browser tabs
+  * 32x32px - bookmarks bar
+  * 48x48px - desktop shortcuts
+  * 64x64px - high DPI displays
+- File size: Under 10KB
+- Design: Simple, recognizable at tiny sizes
+- Colors: High contrast, limited palette
+
+Modern approach (additional files):
+- favicon.ico (multi-size ICO file)
+- apple-touch-icon.png (180x180px for iOS)
+- android-chrome-192x192.png (for Android)
+- android-chrome-512x512.png (for Android splash)
+
+For best browser support, always include favicon.ico in root and header link.

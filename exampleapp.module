@@ -1,0 +1,13 @@
+<?php
+/**
+ * Drupal module main entry file for AGNSTK ExampleApp
+ */
+
+// Load core autoloader
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Load Drupal adapter autoloader  
+require_once __DIR__ . '/adapters/drupal/vendor/autoload.php';
+
+// Load and initialize Drupal adapter
+require_once __DIR__ . '/adapters/drupal/drupal-module.php';

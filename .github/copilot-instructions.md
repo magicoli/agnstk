@@ -2,6 +2,10 @@
 
 Test server is enabled with with `composer run dev`, with address http://localhost:8000
 
+The setup uses artisan, so each component that can be installed via artisan should be installed that way.
+
+As much as possible, we stick to vanilla Laravel, to avoid complicate custom coding that implies long testing and try and fail, so please use the Laravel documentation as a reference.
+
 - Make sure to take advantage of the Laravel environment present in core.
 - Make sure to do everything in a scalable way (e.g. a block displaying Hello World will would share a lot of procedures with a block displaying the app name and version, avoid writing several times the same code)
 - Do not rewrite procedures that are already provided by Laravel framework

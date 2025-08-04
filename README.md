@@ -1,132 +1,61 @@
-# AGNSTK - Agnostic Glue for Non-Specific ToolKits
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-**One Core. Any CMS.**
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-[![License: AGPL-v3](https://img.shields.io/badge/License-AGPLv3-yellow.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php)](https://www.php.net/)
-[![CMS Agnostic](https://img.shields.io/badge/CMS-Agnostic-ff69b4)](https://agnstk.org)
+## About Laravel
 
----
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## What is AGNSTK?
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-AGNSTK (pronounced *"ag-nostic"*) is the **duct tape for your CMS plugins**—except it’s reusable, elegant, and won’t leave sticky residue. It’s a **single codebase** that adapts to WordPress, Drupal, October CMS, Laravel, and more.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Think of it as:
-- A **Swiss Army knife** for CMS development.
-- A **universal adapter** for your PHP tools.
-- The **glue** that binds your logic to any platform.
+## Learning Laravel
 
----
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## Why Use AGNSTK?
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-✅ **Write once, deploy anywhere** – No more rewriting plugins for each CMS.
-✅ **Lightweight core** – Only ~50KB of glue code (the rest is your logic).
-✅ **No lock-in** – Your business logic stays clean and portable.
-✅ **Fun to say** – "AGNSTK" sounds like a robot sneezing.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
----
+## Laravel Sponsors
 
-## How It Works
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-AGNSTK is built **on Laravel**, providing a robust core for your logic. Adapters then bridge this core to other CMS platforms.
+### Premium Partners
 
-```plaintext
-core/          # Laravel-based core logic
-├── app/       # Your business logic (e.g., Booking, Payments)
-├── config/
-└── routes/
-
-adapters/      # CMS-specific entry points (glue code)
-├── wordpress/
-├── drupal/
-└── october/
-```
-
-(Want another CMS? Open an issue!)
-
-## Installation
-
-* Clone the repo:
-```bash
-git clone https://github.com/magicoli/agnstk.git
-cd agnstk
-```
-
-Pick your CMS:
-```bash
-cp -r adapters/wordpress/ /path/to/your/wp-content/plugins/agnstk/
-```
-
-Run Composer (if needed):
-```bash
-composer install
-```
-
-### Example: Hello World
-```php
-// core/src/Hello.php
-namespace AGNSTK\Core;
-
-class Hello {
-    public static function sayHi() {
-        return "Hello from AGNSTK!";
-    }
-}
-// adapters/wordpress/wordpress-plugin.php
-add_shortcode('agnstk_hello', function() {
-    return \AGNSTK\Core\Hello::sayHi();
-});
-```
-
-Now use [agnstk_hello] in WordPress!
-
-## ExampleApp - AGNSTK Proof of Concept
-
-This is a CMS-agnostic application framework that allows you to write your core business logic once and deploy it across multiple platforms.
-
-### Current Status
-The proof of concept includes:
-- **Standalone app**: Access via `index.php`
-- **WordPress plugin**: Install as plugin with `exampleapp.php` as main file
-- **Drupal module**: Use `exampleapp.module` 
-- **October CMS plugin**: Use `Plugin.php`
-
-### Quick Test
-1. **Standalone**: Visit the root URL to see the standalone app
-2. **WordPress**: Activate the plugin and use shortcode `[exampleapp_membership]`
-
-### Core Features
-- `MembershipService`: Returns membership information for a given user ID
-- Platform-specific adapters handle user authentication and CMS integration
-
-### File Structure
-```
-agnstk/
-├── index.php              # Standalone entry
-├── exampleapp.php         # WordPress plugin entry
-├── exampleapp.module      # Drupal module entry  
-├── Plugin.php             # October CMS plugin entry
-├── composer.json          # Autoloader configuration
-├── core/app/Services/     # Core business logic
-└── adapters/              # Platform-specific adapters
-```
-
-### Setup
-Run `composer install` to generate the autoloader, then test each platform.
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
 ## Contributing
 
-Found a bug? https://github.com/magicoli/agnstk/issues
-Want help or discuss a related matter? https://github.com/magicoli/agnstk/discussions
-Want to add a CMS? Open a an issue on GitHub.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-**Code of Conduct**: Be nice. We’re all just trying to glue things together.
-License: MIT (use it, break it, fix it).
+## Code of Conduct
 
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Why "TransKit"?
-Because "ToolKit" was too boring. AGNSTK transforms your code to fit anywhere—like a chameleon, but for PHP.
+## Security Vulnerabilities
 
-Made with ❤️ and duct tape by [magicoli](https://github.com/magicoli).
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

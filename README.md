@@ -33,15 +33,29 @@ Think of it as:
 AGNSTK is built **on Laravel**, providing a robust core for your logic. Adapters then bridge this core to other CMS platforms.
 
 ```plaintext
-core/          # Laravel-based core logic
-├── app/       # Your business logic (e.g., Booking, Payments)
+agnstk/
+├── index.php              # Standalone entry
+├── exampleapp.php         # WordPress plugin entry
+├── exampleapp.module      # Drupal module entry  
+├── Plugin.php             # October CMS plugin entry
+...                        # Other specific frameworks
+├── adapters/              # CMS-specific entry points (glue code)
+│   ├── drupal/
+│   ├── joomla/
+│   ├── octobercms/
+│   └── wordpress/
+├── app/                   # Laravel core business logic
+│   ├── Blocks/
+│   ├── Http/
+│   ├── Models/
+│   ├── Providers/
+│   ├── Services/
+│   └── helpers.php
 ├── config/
-└── routes/
-
-adapters/      # CMS-specific entry points (glue code)
-├── wordpress/
-├── drupal/
-└── october/
+├── database/
+├── routes/
+...                         # Other core codes, should not be modified
+└── resources/
 ```
 
 (Want another CMS? Open an issue!)
@@ -52,28 +66,26 @@ adapters/      # CMS-specific entry points (glue code)
 ```bash
 git clone https://github.com/magicoli/agnstk.git
 cd agnstk
-```
-
-Pick your CMS:
-```bash
-cp -r adapters/wordpress/ /path/to/your/wp-content/plugins/agnstk/
-```
-
-Run Composer (if needed):
-```bash
 composer install
 ```
 
+Then start the development server (Laravel-based standalone app):
+```bash
+composer run dev
+```
+The app will be available at `http://localhost:8000`.
+
 ### Example: Hello World
 ```php
-// core/src/Hello.php
-namespace App\Core;
+// src/Blocks/Hello.php
+namespace App\Services;
 
 class Hello {
     public static function sayHi() {
         return "Hello from AGNSTK!";
     }
 }
+
 // adapters/wordpress/wordpress-plugin.php
 add_shortcode('agnstk_hello', function() {
     return \App\Core\Hello::sayHi();
@@ -87,34 +99,22 @@ Now use [agnstk_hello] in WordPress!
 This is a CMS-agnostic application framework that allows you to write your core business logic once and deploy it across multiple platforms.
 
 ### Current Status
-The proof of concept includes:
-- **Standalone app**: Access via `index.php`
+AGNSTK is currently implemented as a **Laravel 12** application with CMS adapters:
+- **Laravel standalone app**: Available at `http://localhost:8000` when running `composer run dev`
 - **WordPress plugin**: Install as plugin with `exampleapp.php` as main file
-- **Drupal module**: Use `exampleapp.module` 
-- **October CMS plugin**: Use `Plugin.php`
+- **Drupal module**: Available in `adapters/drupal/` 
+- **October CMS plugin**: Available in `adapters/octobercms/`
 
 ### Quick Test
-1. **Standalone**: Visit the root URL to see the standalone app
-2. **WordPress**: Activate the plugin and use shortcode `[exampleapp_membership]`
+1. **Standalone Laravel**: Run `composer run dev` and visit `http://localhost:8000`
+2. **WordPress**: Copy the full project folder to your plugins directory and activate (for production, delete the irrelevant adapters and entry points)
 
 ### Core Features
-- `MembershipService`: Returns membership information for a given user ID
-- Platform-specific adapters handle user authentication and CMS integration
-
-### File Structure
-```
-agnstk/
-├── index.php              # Standalone entry
-├── exampleapp.php         # WordPress plugin entry
-├── exampleapp.module      # Drupal module entry  
-├── Plugin.php             # October CMS plugin entry
-├── composer.json          # Autoloader configuration
-├── core/app/Services/     # Core business logic
-└── adapters/              # Platform-specific adapters
-```
-
-### Setup
-Run `composer install` to generate the autoloader, then test each platform.
+- **Laravel 12** framework providing robust architecture
+- **PageService**: Configurable page system with dynamic routing
+- **Bootstrap UI**: Clean, responsive interface
+- **Markdown support**: README and content rendering with syntax highlighting
+- Platform-specific adapters handle CMS integration and user authentication
 
 ## Contributing
 

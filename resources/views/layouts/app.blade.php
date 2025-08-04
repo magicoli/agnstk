@@ -13,8 +13,14 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        <!-- Scripts -->
+    @vite(['resources/js/vendor/prism/prism.js'])
+    @vite([
+        'resources/sass/app.scss',
+        'resources/js/app.js',
+        'resources/css/markdown.css',
+        'resources/css/vendor/prism/prism.css'
+    ])
 </head>
 <body>
     <div id="app" class="flex-grow-1 d-flex flex-column min-vh-100">
@@ -100,5 +106,7 @@
             </div>
         </footer>
     </div>
+    
+    <!-- Prism.js for syntax highlighting -->
 </body>
 </html>

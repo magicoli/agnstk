@@ -3,7 +3,10 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
+use League\CommonMark\MarkdownConverter;
 
 class PageService
 {
@@ -95,9 +98,25 @@ class PageService
         }
 
         $markdown = File::get($readmePath);
-        $converter = new CommonMarkConverter();
+
+        // Configure environment with GitHub-flavored markdown
+        $environment = new Environment([
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+            'code_block_class' => 'language-', // This helps with Prism.js syntax highlighting
+        ]);
         
-        return '<div class="readme-content">' . $converter->convert($markdown) . '</div>';
+        $environment->addExtension(new CommonMarkCoreExtension());
+        $environment->addExtension(new GithubFlavoredMarkdownExtension());
+        
+        $converter = new MarkdownConverter($environment);
+        
+        $html = $converter->convert($markdown);
+        
+        // Post-process to ensure proper Prism.js classes
+        $html = preg_replace('/<code class="language-(\w+)"/', '<code class="language-$1"', $html);
+        
+        return '<div class="markdown-content">' . $html . '</div>';
     }
 
     /**

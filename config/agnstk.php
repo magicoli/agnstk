@@ -14,7 +14,7 @@ return [
     // Default configuration (fallback if config.json is not found)
     'defaults' => [
         'app' => [
-            'name' => 'AGNSTK (from config/agnstk.php)',
+            'name' => 'AGNSTK (debug, fallback from config/agnstk.php)',
             'version' => '1.0.0',
             'description' => 'Agnostic Glue for Non-Specific ToolKits - Example Application'
         ],

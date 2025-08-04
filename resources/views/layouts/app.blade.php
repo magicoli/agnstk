@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'AGNSTKz') }}</title>
+    <title>{{ config('app.name', 'AGNSTK (debug, fallback from app.blade.php)') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -17,11 +17,11 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="flex-grow-1 d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'AGNSTK (from app.blade.php)') }}
+                    {{ config('app.name', 'AGNSTK (debug, fallback from app.blade.php)') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -72,9 +72,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 flex-grow-1">
             @yield('content')
         </main>
+
+        <footer class="bg-white text-center text-lg-start">
+            <div class="text-center p-3">
+                © {{ date('Y') }} {{ config('app.name', 'AGNSTK (debug, fallback from app.blade.php)') }}. All rights reserved.
+            </div>
+        </footer>
     </div>
 </body>
 </html>

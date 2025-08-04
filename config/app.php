@@ -1,4 +1,7 @@
 <?php
+/**
+ * Core application defaults.
+ */
 
 return [
 
@@ -14,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'AGNSTK – Agnostic Glue for Non-Specific ToolKits'),
+    'logo' => env('APP_LOGO', '/assets/logo.png'),
 
     /*
     |--------------------------------------------------------------------------

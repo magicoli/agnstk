@@ -20,11 +20,23 @@ return [
         'about' => [
             'title' => 'About AGNSTK',
             'slug' => '/',
-            'content_source' => 'readme', // Show README content on home page
+            'source' => 'README.md', // Show README content on home page
             'menu' => [
                 'label' => 'About',
                 'order' => 10,
                 'enabled' => true,
+            ],
+            'enabled' => true,
+        ],
+        'developers' => [
+            'title' => 'Developers',
+            'slug' => '/developers',
+            'source' => 'DEVELOPERS.md', // Show README content on home page
+            'menu' => [
+                // 'menu_id' => 'main',     // If not set, defaults to 'main'
+                // 'label' => 'Developers', // if not set, will use title
+                // 'order' => 10,           // if not set, will default to 10
+                'enabled' => true,       // if not set, will default to false
             ],
             'enabled' => true,
         ],
@@ -48,6 +60,7 @@ return [
             'content_source' => 'view',
             'content_id' => 'dashboard-content',
             'menu' => [
+                'menu_id' => 'user',        // The menu must be set here, not in layouts
                 'label' => 'Dashboard',
                 'order' => 30,
                 'enabled' => false, // Don't show in main menu

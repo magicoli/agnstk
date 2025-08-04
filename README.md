@@ -67,7 +67,7 @@ composer install
 ### Example: Hello World
 ```php
 // core/src/Hello.php
-namespace AGNSTK\Core;
+namespace App\Core;
 
 class Hello {
     public static function sayHi() {
@@ -76,7 +76,7 @@ class Hello {
 }
 // adapters/wordpress/wordpress-plugin.php
 add_shortcode('agnstk_hello', function() {
-    return \AGNSTK\Core\Hello::sayHi();
+    return \App\Core\Hello::sayHi();
 });
 ```
 

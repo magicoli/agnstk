@@ -1,5 +1,7 @@
 # AGNSTK Coding Standards & Adapter Naming
 
+Test server is enabled with with `composer run dev`, with address http://localhost:8000
+
 - Make sure to take advantage of the Laravel environment present in core.
 - Make sure to do everything in a scalable way (e.g. a block displaying Hello World will would share a lot of procedures with a block displaying the app name and version, avoid writing several times the same code)
 - Do not rewrite procedures that are already provided by Laravel framework
@@ -15,7 +17,7 @@
 ## File Naming - Laravel Standard
 - Use **PascalCase** for class files (Laravel standard): `MembershipService.php`, `Controller.php`, `WordPressAdapter.php`
 - Follow PSR-4: Namespace matches directory structure exactly
-- Example: `AGNSTK\Core\Services` → `core/app/Services/`
+- Example: `App\Core\Services` → `core/app/Services/`
 
 ## Example App Naming
 - Use a generic name for the example app (e.g., `exampleapp`) in all adapters and standalone implementations.
@@ -48,7 +50,7 @@
 ## Core Logic
 - Place shared business logic in `core/app/Services/`
 - Keep core logic completely CMS-agnostic
-- Use proper PSR-4 namespacing: `AGNSTK\Core\Services`
+- Use proper PSR-4 namespacing: `App\Core\Services`
 
 ## For Automated Agents
 - **ALWAYS** read .github/copilot-instructions.md for every request - THIS IS CRITICAL

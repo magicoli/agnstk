@@ -1,0 +1,8 @@
+# Security: Protect sensitive files
+<Files ".env*">
+    Require all denied
+</Files>
+
+<Files "*.log">
+    Require all denied
+</Files>

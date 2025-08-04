@@ -1,64 +1,44 @@
-# AGNSTK Coding Standards & Adapter Naming
+# AGNSTK Coding Standards & Architecture
 
-Test server is enabled with with `composer run dev`, with address http://localhost:8000
+## Development Environment
+- Test server: `composer run dev` → http://localhost:8000
+- Laravel 12 with Pest testing framework
+- Use Artisan commands for all component generation: `php artisan make:*`
 
-The setup uses artisan, so each component that can be installed via artisan should be installed that way.
+## CRITICAL: Architecture Overview
+- **Laravel-First**: Use Laravel's built-in features (routing, auth, templating, etc.) - never recreate what Laravel provides
+- **Project Root**: Laravel application root serves as the base for ALL implementations
+- **Core Logic**: Business logic in `app/Services/` using Laravel patterns
+- **CMS Adapters**: Future adapters will consume Laravel services/APIs (currently disabled)
 
-As much as possible, we stick to vanilla Laravel, to avoid complicate custom coding that implies long testing and try and fail, so please use the Laravel documentation as a reference.
+## Laravel Standards (Strictly Follow)
+- **File Naming**: PascalCase for classes (Laravel standard): `MembershipService.php`, `BlockController.php`
+- **PSR-4 Namespacing**: `App\Services\BlockService` → `app/Services/BlockService.php`
+- **Artisan Generation**: Always use `php artisan make:controller`, `php artisan make:model`, etc.
+- **Blade Templates**: Use Laravel's templating system, extend layouts properly
+- **Routes**: Define in `routes/web.php` using Laravel routing
+- **Database**: Use Eloquent models and migrations
 
-- Make sure to take advantage of the Laravel environment present in core.
-- Make sure to do everything in a scalable way (e.g. a block displaying Hello World will would share a lot of procedures with a block displaying the app name and version, avoid writing several times the same code)
-- Do not rewrite procedures that are already provided by Laravel framework
+## Development Principles
+- **Laravel Documentation First**: Always check Laravel docs before writing custom code
+- **Scalable Design**: Shared logic in services, avoid code duplication
+- **Framework Integration**: Leverage Laravel's IoC container, facades, and service providers
+- **Testing**: Use Pest for readable, maintainable tests
 
-## CRITICAL: Project Root Structure
-- The project root **is always** the plugin/module directory for ALL CMS flavors AND the standalone app.
-- All adapter entry files must be placed in the project root for development and testing.
-- This ensures instant access to the core and avoids publishing/syncing packages during development.
-- **NEVER FORGET**: The root directory serves as WordPress plugin, Drupal module, October CMS plugin, AND standalone app simultaneously.
-- **ARCHITECTURE**: Core handles main app logic, adapters handle CMS-specific interfaces
-- **COMPOSER**: Main composer.json is for AGNSTK library, each adapter has its own composer.json for CMS-specific dependencies
+## Current Focus: Standalone Laravel App
+- Authentication & registration working via Laravel Breeze/UI
+- Block system implementation using Laravel patterns
+- Page management through Laravel controllers/models
+- API endpoints using Laravel API resources
 
-## File Naming - Laravel Standard
-- Use **PascalCase** for class files (Laravel standard): `MembershipService.php`, `Controller.php`, `WordPressAdapter.php`
-- Follow PSR-4: Namespace matches directory structure exactly
-- Example: `App\Core\Services` → `core/app/Services/`
-
-## Example App Naming
-- Use a generic name for the example app (e.g., `exampleapp`) in all adapters and standalone implementations.
-- Do not use the library name (`agnstk`) for example app entry points.
-- Example:
-  - Standalone: `index.php` (loads Controller)
-  - WordPress: `exampleapp.php` (with proper WP plugin headers)
-  - Drupal: `exampleapp.module`
-  - October CMS: `Plugin.php`
-
-## Adapter Entry Points - ROOT ONLY
-- Each CMS adapter must have its entry file in the project ROOT (not subdirectories)
-- All entry files load `vendor/autoload.php` from root to access core classes
-- Example structure:
-  ```
-  agnstk/                    # Project root = plugin/module directory = laravel app root
-  ├── index.php              # Standalone entry
-  ├── exampleapp.php         # WordPress plugin entry (with headers)
-  ├── exampleapp.module      # Drupal module entry
-  ├── Plugin.php             # October CMS plugin entry
-  ├── app/                  # Core business logic
-  └── .../                  # other Laravel directories
-  ```
-
-## WordPress Plugin Requirements
-- WordPress plugin entry file MUST contain proper plugin headers
-- Must use `require_once __DIR__ . '/vendor/autoload.php';` to load core classes
-- Must register hooks/shortcodes using WordPress functions
-
-## Core Logic
-- Place shared business logic in `core/app/Services/`
-- Keep core logic completely CMS-agnostic
-- Use proper PSR-4 namespacing: `App\Core\Services`
+## Future CMS Integration (Disabled)
+- WordPress, Drupal, October CMS adapters will consume Laravel services
+- Each adapter will have separate composer.json for CMS-specific dependencies
+- Root directory structure allows multi-platform compatibility
 
 ## For Automated Agents
-- **ALWAYS** read .github/copilot-instructions.md for every request - THIS IS CRITICAL
-- **NEVER FORGET**: The project root IS the plugin/module directory for ALL platforms
-- **ALWAYS** use PascalCase for PHP class files (Laravel standard)
-- **ALWAYS** ensure proper autoloading setup before creating any classes
-- **REMEMBER**: Main composer.json is for AGNSTK library, each adapter has its own composer.json
+- **ALWAYS** check Laravel documentation before implementing features
+- **NEVER** recreate what Laravel already provides (auth, routing, templating, etc.)
+- **USE** Artisan commands for generating boilerplate code
+- **FOLLOW** Laravel conventions and naming standards strictly
+- **LEVERAGE** Laravel's service container and dependency injection

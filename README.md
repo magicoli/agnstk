@@ -39,22 +39,29 @@ agnstk/
 ├── exampleapp.module      # Drupal module entry  
 ├── Plugin.php             # October CMS plugin entry
 ...                        # Other specific frameworks
+├── src/                   # Developer application code (YOUR CODE GOES HERE)
+│   ├── Blocks/            # HTML blocks for embedding
+│   ├── Pages/             # Page content providers
+│   ├── Menus/             # Menu definitions
+│   ├── Shortcodes/        # Shortcode handlers
+│   ├── Users/             # User management
+│   └── Services/          # Cache, sync, external services, etc.
 ├── adapters/              # CMS-specific entry points (glue code)
 │   ├── drupal/
 │   ├── joomla/
 │   ├── octobercms/
 │   └── wordpress/
-├── app/                   # Laravel core business logic
-│   ├── Blocks/
+├── app/                   # Laravel core (DO NOT MODIFY)
 │   ├── Http/
 │   ├── Models/
 │   ├── Providers/
 │   ├── Services/
 │   └── helpers.php
 ├── config/
+│   └── app-defaults.php   # Only config file developers modify
 ├── database/
 ├── routes/
-...                         # Other core codes, should not be modified
+...                        # Other core files (DO NOT MODIFY)
 └── resources/
 ```
 
@@ -78,7 +85,7 @@ The app will be available at `http://localhost:8000`.
 ### Example: Hello World
 ```php
 // src/Blocks/Hello.php
-namespace App\Services;
+namespace YourApp\Blocks;
 
 class Hello {
     public static function sayHi() {
@@ -88,7 +95,7 @@ class Hello {
 
 // adapters/wordpress/wordpress-plugin.php
 add_shortcode('agnstk_hello', function() {
-    return \App\Core\Hello::sayHi();
+    return \YourApp\Blocks\Hello::sayHi();
 });
 ```
 
@@ -110,10 +117,11 @@ AGNSTK is currently implemented as a **Laravel 12** application with CMS adapter
 2. **WordPress**: Copy the full project folder to your plugins directory and activate (for production, delete the irrelevant adapters and entry points)
 
 ### Core Features
-- **Laravel 12** framework providing robust architecture
-- **PageService**: Configurable page system with dynamic routing
-- **Bootstrap UI**: Clean, responsive interface
-- **Markdown support**: README and content rendering with syntax highlighting
+- **Laravel 12** framework providing robust AGNSTK core (hands-off for developers)
+- **Configurable objects**: Pages, Menus, Blocks, Shortcodes, Users, Services
+- **Developer-friendly**: Put your code in `src/`, modify only `config/app-defaults.php`
+- **Bootstrap UI**: Clean, responsive interface for standalone mode
+- **Markdown support**: Content rendering with syntax highlighting
 - Platform-specific adapters handle CMS integration and user authentication
 
 ## Contributing

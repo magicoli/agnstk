@@ -1,13 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Services\PageService;
 
-Route::get('/', function () {
-    return view('home');
-});
+// Home page
+Route::get('/', [PageController::class, 'home'])->name('home');
 
+// Authentication routes
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Other routes must be defined from values fount in app.pages 
+// Dynamic page routes based on configuration
+$pages = PageService::getEnabledPages();
+foreach ($pages as $pageId => $page) {
+    // Skip about page as it's handled by home route
+    if ($pageId === 'about') continue;
+    
+    $slug = $page['slug'];
+    $routeName = $pageId;
+    
+    // Handle authentication requirement
+    if ($page['auth_required'] ?? false) {
+        Route::get($slug, [PageController::class, 'show'])
+            ->name($routeName)
+            ->middleware('auth')
+            ->defaults('pageId', $pageId);
+    } else {
+        Route::get($slug, [PageController::class, 'show'])
+            ->name($routeName)
+            ->defaults('pageId', $pageId);
+    }
+} 

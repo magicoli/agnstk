@@ -2,12 +2,79 @@
 /**
  * Customizable application defaults.
  * These values can be overridden by site admin in the .env file and/or admin interface.
- * 
- * TODO: process this file, currently not used directly.
  */
 
-// return [
-//     'name' => env('APP_NAME', 'AGNSTK (debug, fallback from app-defaults.php)'),
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Default Pages Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This configuration defines all default pages for the AGNSTK application.
+    | Developers can easily add, modify, or disable pages here without altering
+    | the core application code.
+    |
+    */
+
+    'pages' => [
+        'about' => [
+            'title' => 'About AGNSTK',
+            'slug' => '/',
+            'content_source' => 'readme', // Show README content on home page
+            'menu' => [
+                'label' => 'About',
+                'order' => 10,
+                'enabled' => true,
+            ],
+            'enabled' => true,
+        ],
+        
+        'demo' => [
+            'title' => 'Block Demo',
+            'slug' => '/demo',
+            'content_source' => 'service',
+            'content_id' => 'BlockDemoService@render',
+            'menu' => [
+                'label' => 'Demo',
+                'order' => 20,
+                'enabled' => true,
+            ],
+            'enabled' => true,
+        ],
+        
+        'dashboard' => [
+            'title' => 'Dashboard',
+            'slug' => '/dashboard',
+            'content_source' => 'view',
+            'content_id' => 'dashboard-content',
+            'menu' => [
+                'label' => 'Dashboard',
+                'order' => 30,
+                'enabled' => false, // Don't show in main menu
+                'auth_required' => true,
+            ],
+            'auth_required' => true,
+            'enabled' => true,
+        ],
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Default Blocks Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Default blocks that can be used by pages
+    |
+    */
+
+    'blocks' => [
+        'about' => [
+            'title' => 'About Block',
+            'content' => '<h2>About AGNSTK</h2><p>AGNSTK is an Agnostic Glue for Non-Specific ToolKits that provides a unified interface for managing content across different CMS platforms.</p>',
+            'enabled' => true,
+        ],
+    ],
+];
 //     'logo' => env('APP_LOGO', '/images/logo.png'),
 //     'blocks' => [
 //         'hello' => [

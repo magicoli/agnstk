@@ -21,10 +21,10 @@ Think of it as:
 
 ## Why Use AGNSTK?
 
-✅ **Write once, deploy anywhere** – No more rewriting plugins for each CMS.
-✅ **Lightweight core** – Only ~50KB of glue code (the rest is your logic).
-✅ **No lock-in** – Your business logic stays clean and portable.
-✅ **Fun to say** – "AGNSTK" sounds like a robot sneezing.
+- ✅ **Write once, deploy anywhere** – No more rewriting plugins for each CMS.
+- ✅ **Lightweight core** – Only ~50KB of glue code (the rest is your logic).
+- ✅ **No lock-in** – Your business logic stays clean and portable.
+- ✅ **Fun to say** – "AGNSTK" sounds like a robot sneezing.
 
 ---
 
@@ -118,9 +118,9 @@ Run `composer install` to generate the autoloader, then test each platform.
 
 ## Contributing
 
-Found a bug? https://github.com/magicoli/agnstk/issues
-Want help or discuss a related matter? https://github.com/magicoli/agnstk/discussions
-Want to add a CMS? Open a an issue on GitHub.
+- Found a bug? [github.com/magicoli/agnstk/issues](https://github.com/magicoli/agnstk/issues)
+- Want help or discuss a related matter? [github.com/magicoli/agnstk/discussions](https://github.com/magicoli/agnstk/discussions)
+- Want to add a CMS? Open a an issue on GitHub.
 
 **Code of Conduct**: Be nice. We’re all just trying to glue things together.
 License: MIT (use it, break it, fix it).

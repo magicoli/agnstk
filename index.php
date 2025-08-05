@@ -20,8 +20,9 @@ if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
 // Register the Composer autoloader...
 require __DIR__.'/vendor/autoload.php';
 
-// Detect base URL from the current request for proper asset handling
 $request = Request::capture();
+
+// Detect base URL from the current request for proper asset handling
 
 // Auto-detect the base URL and path
 $scheme = $request->getScheme();
@@ -36,25 +37,28 @@ if ($basePath === '/' || $basePath === '\\') {
 
 // Build the complete base URL
 $baseUrl = $scheme . '://' . $host . $basePath;
+$assetUrl = $baseUrl . '/public';
 
-// Set environment variables for Laravel's URL generation
-putenv("APP_URL={$baseUrl}");
-$_ENV['APP_URL'] = $baseUrl;
+// Set environment variables for Laravel configuration
+putenv("APP_URL=" . $baseUrl);
+putenv("ASSET_URL=" . $assetUrl);
 
-// Set asset URL to point to the public directory within our installation
-putenv("ASSET_URL={$baseUrl}/public");
-$_ENV['ASSET_URL'] = $baseUrl . '/public';
 
 // Bootstrap Laravel and handle the request...
 /** @var Application $app */
 $app = require_once __DIR__.'/bootstrap/app.php';
 
 // Configure Laravel after bootstrapping
-$app->booted(function ($app) use ($baseUrl) {
+$app->booted(function ($app) use ($baseUrl, $assetUrl) {
     // Set the application URL
     $app['config']->set('app.url', $baseUrl);
     // Set the asset URL for proper asset() helper behavior
-    $app['config']->set('app.asset_url', $baseUrl . '/public');
+    $app['config']->set('app.asset_url', $assetUrl);
 });
+
+// Determine if the application is in maintenance mode...
+if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
+    require $maintenance;
+}
 
 $app->handleRequest($request);

@@ -16,6 +16,7 @@
     <!-- Built Assets -->
     <link rel="stylesheet" href="{{ build_asset('main-styles.css') }}">
     <script src="{{ build_asset('main-scripts.js') }}" defer></script>
+    <script src="{{ asset('js/prism.js') }}" defer></script>
 </head>
 <body>
     <div id="app" class="flex-grow-1 d-flex flex-column min-vh-100">

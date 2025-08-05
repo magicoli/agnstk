@@ -19,11 +19,42 @@
 - **Routes**: Define in `routes/web.php` using Laravel routing
 - **Database**: Use Eloquent models and migrations
 
+## URL Generation (CRITICAL - Always Follow)
+**NEVER hardcode URLs or use environment-specific logic for URL generation.**
+
+Always use the global helper functions that work in ALL environments:
+
+### PHP/Blade Templates:
+- **`base_url($path)`** - For application URLs: `base_url('about')` → `https://agnstk.org/agnstk/about`
+- **`public_url($path)`** - For public assets: `public_url('js/prism.js')` → `https://agnstk.org/agnstk/public/js/prism.js`
+- **`build_asset($filename)`** - For built assets: `build_asset('main-styles.css')` → `https://agnstk.org/agnstk/public/build/assets/main-styles.css`
+- **`asset($path)`** - Laravel's helper for public assets
+
+### Examples in Blade:
+```blade
+<!-- Navigation links -->
+<a href="{{ base_url('about') }}">About</a>
+<a href="{{ base_url('/developers') }}">Developers</a>
+
+<!-- Assets -->
+<script src="{{ asset('js/prism.js') }}"></script>
+<script src="{{ public_url('js/custom.js') }}"></script>
+<link rel="stylesheet" href="{{ build_asset('main-styles.css') }}">
+
+<!-- Images -->
+<img src="{{ asset('images/logo.png') }}" alt="Logo">
+<img src="{{ public_url('images/banner.jpg') }}" alt="Banner">
+```
+
+### Twig (Future CMS Integration):
+- Use corresponding Twig functions: `{{ base_url('path') }}`, `{{ public_url('path') }}`, `{{ asset('path') }}`
+
 ## Development Principles
 - **Laravel Documentation First**: Always check Laravel docs before writing custom code
 - **Scalable Design**: Shared logic in services, avoid code duplication
 - **Framework Integration**: Leverage Laravel's IoC container, facades, and service providers
 - **Testing**: Use Pest for readable, maintainable tests
+- **Universal URL Handling**: Use helper functions that work in development AND production
 
 ## Current Focus: Standalone Laravel App
 - Authentication & registration working via Laravel Breeze/UI
@@ -42,3 +73,5 @@
 - **USE** Artisan commands for generating boilerplate code
 - **FOLLOW** Laravel conventions and naming standards strictly
 - **LEVERAGE** Laravel's service container and dependency injection
+- **ALWAYS** use `base_url()`, `public_url()`, `build_asset()`, or `asset()` for URL generation
+- **NEVER** hardcode URLs or create environment-specific URL logic

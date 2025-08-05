@@ -41,7 +41,7 @@ class PageService
                 $menuItems[] = [
                     'pageId' => $pageId,
                     'label' => $page['menu']['label'] ?? $page['title'],
-                    'url' => $page['slug'],
+                    'url' => base_url($page['slug']),
                     'order' => $page['menu']['order'] ?? 10, // Default order if not set
                     'auth_required' => $page['menu']['auth_required'] ?? false,
                 ];

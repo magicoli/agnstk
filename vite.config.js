@@ -5,29 +5,19 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
-                'resources/js/app.js',
+                'resources/sass/main-styles.scss',
+                'resources/js/main-scripts.js',
             ],
             refresh: true,
         }),
     ],
     build: {
+        // outDir: 'public/build',
         rollupOptions: {
             output: {
-                entryFileNames: ({ name }) => {
-                    // Force the name to be agnstk for all entries
-                    return 'assets/first-case.js';
-                },
-                chunkFileNames: 'assets/agnstk-[name].js',
-                assetFileNames: ({ name }) => {
-                    if (name && name.endsWith('.css')) {
-                        return 'assets/public-css.css';
-                    }
-                    if (name && name.endsWith('.js')) {
-                        return 'assets/named-js.js';
-                    }
-                    return 'assets/fallback-[name][extname]';
-                }
+                entryFileNames: 'assets/[name].js',
+                chunkFileNames: 'assets/[name].[ext]',
+                assetFileNames: 'assets/[name].[ext]'
             }
         }
     }

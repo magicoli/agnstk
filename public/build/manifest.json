@@ -1,0 +1,16 @@
+{
+  "resources/js/main-scripts.js": {
+    "file": "assets/agnstk2.js",
+    "name": "main-scripts",
+    "src": "resources/js/main-scripts.js",
+    "isEntry": true
+  },
+  "resources/sass/main-styles.scss": {
+    "file": "assets/agnstk.css",
+    "src": "resources/sass/main-styles.scss",
+    "isEntry": true,
+    "names": [
+      "main-styles.css"
+    ]
+  }
+}

@@ -26,6 +26,9 @@ Think of it as:
 - ✅ **No lock-in** – Your business logic stays clean and portable.
 - ✅ **Fun to say** – "AGNSTK" sounds like a robot sneezing.
 
+**Why "TransKit"?**
+Because "ToolKit" was too boring. AGNSTK transforms your code to fit anywhere—like a chameleon, but for PHP.
+
 ---
 
 ## How It Works
@@ -84,19 +87,34 @@ The app will be available at `http://localhost:8000`.
 
 ### Example: Hello World
 ```php
-// src/Blocks/Hello.php
-namespace YourApp\Blocks;
+// src/Services/Hello.php
+namespace YourApp\Services;
 
 class Hello {
-    public static function sayHi() {
+    use AGNSTK\Services\Service;
+
+    public static function view() {
         return "Hello from AGNSTK!";
     }
 }
 
 // adapters/wordpress/wordpress-plugin.php
-add_shortcode('agnstk_hello', function() {
-    return \YourApp\Blocks\Hello::sayHi();
+add_shortcode('yourapp_hello', function() {
+    return \YourApp\Services\Hello::view();
 });
+
+add_page('yourapp_hello', [
+    'title' => 'Hello',
+    'slug' => '/hello',
+    'callback' => '\YourApp\Services\Hello::view',
+    'menu' => [
+        'menu_id' => 'main',
+        'label' => 'Hello',
+        'order' => 10,
+        'enabled' => true,
+    ],
+    'enabled' => true,
+]);
 ```
 
 Now use [agnstk_hello] in WordPress!
@@ -134,7 +152,6 @@ AGNSTK is currently implemented as a **Laravel 12** application with CMS adapter
 License: MIT (use it, break it, fix it).
 
 
-## Why "TransKit"?
-Because "ToolKit" was too boring. AGNSTK transforms your code to fit anywhere—like a chameleon, but for PHP.
+---
 
 Made with ❤️ and duct tape by [magicoli](https://github.com/magicoli).

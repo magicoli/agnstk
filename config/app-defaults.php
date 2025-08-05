@@ -135,13 +135,13 @@ return [
 //             'blocks', // Page showing all blocks available through the API
 //             'shortcodes', // Page showing all shortcodes available through the API
 //         ],
-//         'logo' => '/assets/logo.png',
-//         'favicon' => '/assets/favicon.ico',
+//         'logo' => '/images/logo.png',
+//         'favicon' => '/images/favicon.ico',
 //         'icons' => [
-//             'apple_touch_icon' => '/assets/apple-touch-icon.png',
-//             'android_chrome_192' => '/assets/android-chrome-192x192.png',
-//             'android_chrome_512' => '/assets/android-chrome-512x512.png',
-//             'safari_pinned_tab' => '/assets/safari-pinned-tab.svg',
+//             'apple_touch_icon' => '/images/apple-touch-icon.png',
+//             'android_chrome_192' => '/images/android-chrome-192x192.png',
+//             'android_chrome_512' => '/images/android-chrome-512x512.png',
+//             'safari_pinned_tab' => '/images/safari-pinned-tab.svg',
 //             'web_manifest' => '/manifest.json'
 //         ]
 //     ],

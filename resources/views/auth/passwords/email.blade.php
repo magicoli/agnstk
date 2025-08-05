@@ -9,8 +9,7 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                        <div class="alert alert-success" role="alert"> {{ session('status') }}
                         </div>
                     @endif
 
@@ -33,8 +32,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                <button type="submit" class="btn btn-primary"> {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
                         </div>

@@ -8,13 +8,11 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\MarkdownConverter;
 
-class PageService
-{
+class PageService {
     /**
      * Get page configuration
      */
-    public static function getPageConfig(string $pageId): ?array
-    {
+    public static function getPageConfig(string $pageId): ?array {
         $pages = config('app-defaults.pages', []);
         return $pages[$pageId] ?? null;
     }
@@ -22,8 +20,7 @@ class PageService
     /**
      * Get all enabled pages
      */
-    public static function getEnabledPages(): array
-    {
+    public static function getEnabledPages(): array {
         $pages = config('app-defaults.pages', []);
         return array_filter($pages, fn($page) => $page['enabled'] ?? false);
     }
@@ -31,8 +28,7 @@ class PageService
     /**
      * Get menu items
      */
-    public static function getMenuItems(): array
-    {
+    public static function getMenuItems(): array {
         $pages = self::getEnabledPages();
         $menuItems = [];
 
@@ -57,8 +53,7 @@ class PageService
     /**
      * Render page content based on its configuration
      */
-    public static function renderPageContent(string $pageId): string
-    {
+    public static function renderPageContent(string $pageId): string {
         $page = self::getPageConfig($pageId);
         
         if (!$page || !($page['enabled'] ?? false)) {
@@ -96,8 +91,7 @@ class PageService
     /**
      * Render content from a source file/string, auto-detecting format
      */
-    private static function renderSourceContent(string $source): string
-    {
+    private static function renderSourceContent(string $source): string {
         // Check if it's a file path
         if (self::isFilePath($source)) {
             $filePath = base_path($source);
@@ -138,16 +132,14 @@ class PageService
     /**
      * Check if a string looks like a file path
      */
-    private static function isFilePath(string $source): bool
-    {
+    private static function isFilePath(string $source): bool {
         return strpos($source, '.') !== false && !str_contains($source, ' ') && strlen($source) < 255;
     }
 
     /**
      * Check if content looks like markdown
      */
-    private static function looksLikeMarkdown(string $content): bool
-    {
+    private static function looksLikeMarkdown(string $content): bool {
         // Simple heuristics to detect markdown
         return preg_match('/^#[^#]|^\*\*|^-\s|^\d+\.\s|```/m', $content);
     }
@@ -155,8 +147,7 @@ class PageService
     /**
      * Render markdown file content as HTML
      */
-    private static function renderMarkdownFile(string $filename): string
-    {
+    private static function renderMarkdownFile(string $filename): string {
         $filePath = base_path($filename);
         
         if (!File::exists($filePath)) {
@@ -170,8 +161,7 @@ class PageService
     /**
      * Render markdown content as HTML
      */
-    private static function renderMarkdownContent(string $markdown): string
-    {
+    private static function renderMarkdownContent(string $markdown): string {
         // Configure environment with GitHub-flavored markdown
         $environment = new Environment([
             'html_input' => 'strip',
@@ -195,8 +185,7 @@ class PageService
     /**
      * Render block content
      */
-    private static function renderBlockContent(string $blockId): string
-    {
+    private static function renderBlockContent(string $blockId): string {
         $blocks = config('app-defaults.blocks', []);
         $block = $blocks[$blockId] ?? null;
         
@@ -210,8 +199,7 @@ class PageService
     /**
      * Render service content
      */
-    private static function renderServiceContent(string $serviceCall): string
-    {
+    private static function renderServiceContent(string $serviceCall): string {
         // Parse service@method format
         if (strpos($serviceCall, '@') !== false) {
             [$serviceClass, $method] = explode('@', $serviceCall, 2);
@@ -228,8 +216,7 @@ class PageService
     /**
      * Render view content
      */
-    private static function renderViewContent(string $viewId): string
-    {
+    private static function renderViewContent(string $viewId): string {
         try {
             return view($viewId)->render();
         } catch (\Exception $e) {

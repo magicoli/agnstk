@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Services\PageService;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
-{
+class PageController extends Controller {
     /**
      * Display a page based on its configuration
      */
-    public function show(string $pageId)
-    {
+    public function show(string $pageId) {
         $page = PageService::getPageConfig($pageId);
         
         if (!$page || !($page['enabled'] ?? false)) {
@@ -34,8 +32,7 @@ class PageController extends Controller
     /**
      * Display the home page
      */
-    public function home()
-    {
+    public function home() {
         return $this->show('about');
     }
 }

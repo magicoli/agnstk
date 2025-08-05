@@ -1,4 +1,4 @@
 import './bootstrap';
 
-// Import Prism.js for syntax highlighting
-import './prism.js';
+// Import and initialize Prism.js for syntax highlighting
+import './prism-init.js';

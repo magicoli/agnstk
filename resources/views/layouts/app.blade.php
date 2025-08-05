@@ -101,7 +101,5 @@
             </div>
         </footer>
     </div>
-    
-    <!-- Prism.js for syntax highlighting -->
 </body>
 </html>

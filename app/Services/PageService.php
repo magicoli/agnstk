@@ -42,7 +42,7 @@ class PageService
                     'pageId' => $pageId,
                     'label' => $page['menu']['label'] ?? $page['title'],
                     'url' => $page['slug'],
-                    'order' => $page['menu']['order'] ?? 999,
+                    'order' => $page['menu']['order'] ?? 10, // Default order if not set
                     'auth_required' => $page['menu']['auth_required'] ?? false,
                 ];
             }
@@ -65,12 +65,19 @@ class PageService
             return '<div class="alert alert-warning">Page not found or disabled.</div>';
         }
 
+        // Handle both old 'source' format and new 'content_source' format
+        if (isset($page['source'])) {
+            // New generic source format - determine type by file extension or content
+            return self::renderSourceContent($page['source']);
+        }
+
+        // Legacy content_source format
         $contentSource = $page['content_source'] ?? 'view';
         $contentId = $page['content_id'] ?? $pageId;
 
         switch ($contentSource) {
             case 'readme':
-                return self::renderReadmeContent();
+                return self::renderMarkdownFile('README.md');
                 
             case 'block':
                 return self::renderBlockContent($contentId);
@@ -87,18 +94,84 @@ class PageService
     }
 
     /**
-     * Render README.md content as HTML
+     * Render content from a source file/string, auto-detecting format
      */
-    private static function renderReadmeContent(): string
+    private static function renderSourceContent(string $source): string
     {
-        $readmePath = base_path('README.md');
+        // Check if it's a file path
+        if (self::isFilePath($source)) {
+            $filePath = base_path($source);
+            
+            if (!File::exists($filePath)) {
+                return '<div class="alert alert-warning">File not found: ' . $source . '</div>';
+            }
+            
+            // Determine format by file extension
+            $extension = strtolower(pathinfo($source, PATHINFO_EXTENSION));
+            
+            switch ($extension) {
+                case 'md':
+                case 'markdown':
+                    return self::renderMarkdownFile($source);
+                    
+                case 'html':
+                case 'htm':
+                    return File::get($filePath);
+                    
+                case 'txt':
+                    return '<pre>' . htmlspecialchars(File::get($filePath)) . '</pre>';
+                    
+                default:
+                    return '<div class="alert alert-warning">Unsupported file format: ' . $extension . '</div>';
+            }
+        }
         
-        if (!File::exists($readmePath)) {
-            return '<div class="alert alert-warning">README.md not found.</div>';
+        // If not a file path, treat as raw content and try to detect format
+        if (self::looksLikeMarkdown($source)) {
+            return self::renderMarkdownContent($source);
+        }
+        
+        // Default: treat as HTML
+        return $source;
+    }
+
+    /**
+     * Check if a string looks like a file path
+     */
+    private static function isFilePath(string $source): bool
+    {
+        return strpos($source, '.') !== false && !str_contains($source, ' ') && strlen($source) < 255;
+    }
+
+    /**
+     * Check if content looks like markdown
+     */
+    private static function looksLikeMarkdown(string $content): bool
+    {
+        // Simple heuristics to detect markdown
+        return preg_match('/^#[^#]|^\*\*|^-\s|^\d+\.\s|```/m', $content);
+    }
+
+    /**
+     * Render markdown file content as HTML
+     */
+    private static function renderMarkdownFile(string $filename): string
+    {
+        $filePath = base_path($filename);
+        
+        if (!File::exists($filePath)) {
+            return '<div class="alert alert-warning">' . $filename . ' not found.</div>';
         }
 
-        $markdown = File::get($readmePath);
+        $markdown = File::get($filePath);
+        return self::renderMarkdownContent($markdown);
+    }
 
+    /**
+     * Render markdown content as HTML
+     */
+    private static function renderMarkdownContent(string $markdown): string
+    {
         // Configure environment with GitHub-flavored markdown
         $environment = new Environment([
             'html_input' => 'strip',

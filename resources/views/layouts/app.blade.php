@@ -13,14 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-        <!-- Scripts -->
-    @vite(['resources/js/vendor/prism/prism.js'])
-    @vite([
-        'resources/sass/app.scss',
-        'resources/js/app.js',
-        'resources/css/markdown.css',
-        'resources/css/vendor/prism/prism.css'
-    ])
+    <!-- Built Assets -->
+    <link rel="stylesheet" href="{{ build_asset('agnstk.css') }}">
+    <script src="{{ build_asset('agnstk.js') }}" defer></script>
 </head>
 <body>
     <div id="app" class="flex-grow-1 d-flex flex-column min-vh-100">
@@ -28,7 +23,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     @if(config('app.logo'))
-                        <img src="{{ asset(config('app.logo')) }}" alt="{{ config('app.name', 'AGNSTK') }} Logo" style="height: 32px;" class="me-2">
+                        <img src="{{ public_url(ltrim(config('app.logo'), '/')) }}" alt="{{ config('app.name', 'AGNSTK') }} Logo" style="height: 32px;" class="me-2">
                     @endif
                     {{ config('app.name', 'AGNSTK (debug, fallback from app.blade.php)') }}
                 </a>

@@ -24,14 +24,14 @@ This core is automatically included as a git subtree in AGNSTK applications.
 
 ## What is this?
 
-This directory contains the core AGNSTK framework that should **NOT be modified directly**. It's managed as a git subtree from the [magicoli/agnstk-core](https://github.com/magicoli/agnstk-core) repository.
+This directory contains the core AGNSTK framework that should **NOT be modified directly**. It's managed as a git subtree from the [magicoli/agnstk](https://github.com/magicoli/agnstk) repository.
 
 ## For Application Developers
 
 - **DON'T EDIT** files in this `core/` directory
 - **PUT YOUR CODE** in the application root directories (`src/`, `config/`, etc.)  
 - **CONFIGURE** your application by editing `core/config/bundle.php`
-- **UPDATE THE CORE** using `git subtree pull --prefix=core https://github.com/magicoli/agnstk-core.git master --squash`
+- **UPDATE THE CORE** using `git subtree pull --prefix=core https://github.com/magicoli/agnstk.git master --squash`
 
 ### Bundle Configuration Setup
 
@@ -55,7 +55,7 @@ After cloning your AGNSTK application, you need to enable bundle configuration t
 
 If you want to contribute to the AGNSTK framework itself:
 
-1. Work on the core repository: https://github.com/magicoli/agnstk-core
+1. Work on the core repository: https://github.com/magicoli/agnstk
 2. Changes will be pulled into applications via git subtree updates
 
 ## Architecture
@@ -82,10 +82,10 @@ The core provides:
 
 Update the core framework:
 ```bash
-git subtree pull --prefix=core https://github.com/magicoli/agnstk-core.git master --squash
+git subtree pull --prefix=core https://github.com/magicoli/agnstk.git master --squash
 ```
 
-This uses git subtree to pull the latest changes from agnstk-core while preserving your application code.
+This uses git subtree to pull the latest changes from agnstk while preserving your application code.
 
 ---
 

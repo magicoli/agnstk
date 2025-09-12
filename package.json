@@ -1,6 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/package.json",
-    "name": "agnstk-core",
+    "name": "agnstk",
     "description": "AGNSTK Framework Core assets",
     "private": true,
     "type": "module",
